@@ -1,12 +1,11 @@
 package main
 
 import (
-	"fmt"
 	"archive/zip"
+	"errors"
+	"fmt"
 	"io/ioutil"
 	"regexp"
-	"errors"
-	"os"
 )
 
 // http://www.pythonchallenge.com/pc/def/channel.html
@@ -30,35 +29,25 @@ func collectInfo(files []*zip.File) {
 	var cmt string
 	var err error
 
-	out, err := os.Create("./out.txt")
-	if err != nil {
-		fmt.Println("Failed openning the output file")
-		return
-	}
-	defer out.Close()
-
 	for {
 		cmt, link, err = getCmtAndRetNext(link, files)
 		if err != nil {
 			fmt.Println("Failed getting link", link, ":", err)
 			return
 		}
-		out.WriteString(cmt)
+		fmt.Print(cmt)
 	}
 }
 
 func getCmtAndRetNext(link string, files []*zip.File) (string, string, error) {
-	fmt.Println("Getting info from", link, "...")
 	for _, f := range files {
-		if f.Name == link + ".txt" {
+		if f.Name == link+".txt" {
 			t, err := readContent(f)
 			if err != nil {
-				fmt.Println("Failed reading", f.Name)
 				return "", "", err
 			}
 			n, err := matchLink(t)
 			if err != nil {
-				fmt.Println("Failed reading", f.Name)
 				return "", "", err
 			}
 			return f.Comment, n, nil
@@ -100,9 +89,8 @@ func matchLink(content string) (string, error) {
 	}
 	v := r.FindStringSubmatch(content)
 	if len(v) == 0 {
-		return "", errors.New("Invalid string")
+		return "", errors.New("string mismatch")
 	} else {
 		return v[1], nil
 	}
 }
-

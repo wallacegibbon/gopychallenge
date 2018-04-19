@@ -40,7 +40,7 @@ func matchLink(content string) (string, error) {
 	}
 	v := r.FindStringSubmatch(content)
 	if len(v) == 0 {
-		return "", errors.New("Invalid string")
+		return "", errors.New("string mismatch")
 	} else {
 		return v[1], nil
 	}
