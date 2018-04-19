@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"time"
 	"regexp"
 )
 
@@ -16,7 +17,7 @@ func main() {
 	//var curLink = "12345"
 	var curLink = "8022"
 	for {
-		d, err := getLink(curLink)
+		d, err := getLinkTry(curLink)
 		if err != nil {
 			fmt.Println("Failed get link", curLink)
 			return
@@ -45,11 +46,29 @@ func matchLink(content string) (string, error) {
 	}
 }
 
+func getLinkTry(linkTail string) ([]byte, error) {
+	var cnt = 1
+	for {
+		r, err := getLink(linkTail)
+		if err != nil {
+			fmt.Println("**HTTP Get error:", err)
+			if cnt < 3 {
+				cnt++
+			} else {
+				return nil, err
+			}
+		} else {
+			return r, nil
+		}
+	}
+}
+
 func getLink(linkTail string) ([]byte, error) {
 	url := fmt.Sprintf("%s?nothing=%s", baseUrl, linkTail)
 	fmt.Println("Fetching", url)
 
-	resp, err := http.Get(url)
+	cli := http.Client{Timeout: time.Duration(time.Second * 3)}
+	resp, err := cli.Get(url)
 	if err != nil {
 		return nil, err
 	}
