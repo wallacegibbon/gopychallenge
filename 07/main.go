@@ -14,6 +14,7 @@ func main() {
 		fmt.Println("Failed opening image")
 		return
 	}
+	defer f.Close()
 
 	img, err := png.Decode(f)
 	if err != nil {
