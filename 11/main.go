@@ -27,40 +27,37 @@ func main() {
 
 	s := img.Bounds().Max
 
-	o1, err := os.Create("./o1.jpg")
-	if err != nil {
-		fmt.Println("Failed opening o1:", err)
+	var o [2]*os.File
+	for x := 0; x < 2; x++ {
+		imgname := fmt.Sprintf("./o%d.jpg", x)
+		o[x], err = os.Create(imgname)
+		if err != nil {
+			fmt.Printf("Failed opening output %d, %v\n", x, err)
+		}
+		defer o[x].Close()
 	}
-	defer o1.Close()
 
-	o2, err := os.Create("./o2.jpg")
-	if err != nil {
-		fmt.Println("Failed opening o2:", err)
+	var i [2]*image.NRGBA
+	for x := 0; x < 2; x++ {
+		i[x] = image.NewNRGBA(image.Rect(0, 0, s.X, s.Y))
 	}
-	defer o2.Close()
-
-	i1 := image.NewNRGBA(image.Rect(0, 0, s.X, s.Y))
-	i2 := image.NewNRGBA(image.Rect(0, 0, s.X, s.Y))
 
 	for x := 0; x < s.X; x++ {
 		for y := 0; y < s.Y; y++ {
 			c := img.At(x, y)
 			a, b := x%2, y%2
 			if a == 0 && b == 0 {
-				i1.Set(x, y, c)
+				i[0].Set(x, y, c)
 			} else if a != 0 && b != 0 {
-				i2.Set(x, y, c)
+				i[1].Set(x, y, c)
 			}
 		}
 	}
 
-	err = jpeg.Encode(o1, i1, &jpeg.Options{100})
-	if err != nil {
-		fmt.Println("Failed writing image:", err)
-	}
-
-	err = jpeg.Encode(o2, i2, &jpeg.Options{100})
-	if err != nil {
-		fmt.Println("Failed writing image:", err)
+	for x := 0; x < 2; x++ {
+		err := jpeg.Encode(o[x], i[x], &jpeg.Options{100})
+		if err != nil {
+			fmt.Printf("Failed writing image %d, %v\n", x, err)
+		}
 	}
 }
