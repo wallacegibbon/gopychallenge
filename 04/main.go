@@ -5,13 +5,15 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
-	"time"
 	"regexp"
+	"time"
 )
 
 // http://www.pythonchallenge.com/pc/def/linkedlist.php
 
 const baseUrl = "http://www.pythonchallenge.com/pc/def/linkedlist.php"
+
+var httpcli = http.Client{Timeout: time.Duration(time.Second * 3)}
 
 func main() {
 	//var curLink = "12345"
@@ -67,8 +69,7 @@ func getLink(linkTail string) ([]byte, error) {
 	url := fmt.Sprintf("%s?nothing=%s", baseUrl, linkTail)
 	fmt.Println("Fetching", url)
 
-	cli := http.Client{Timeout: time.Duration(time.Second * 3)}
-	resp, err := cli.Get(url)
+	resp, err := httpcli.Get(url)
 	if err != nil {
 		return nil, err
 	}
