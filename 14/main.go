@@ -25,10 +25,34 @@ func main() {
 		return
 	}
 
-	s := img.Bounds().Max
-	//fmt.Println(s)
-
 	oi := image.NewNRGBA(image.Rect(0, 0, 100, 100))
+
+	var pixcnt int
+	for i := 0; i <= 49; i++ {
+		for n := i; n <= 99-i; n++ {
+			p := img.At(pixcnt, 0)
+			pixcnt++
+			oi.Set(i, n, p)
+		}
+		if i == 49 {
+			break
+		}
+		for n := i + 1; n <= 99-i; n++ {
+			p := img.At(pixcnt, 0)
+			pixcnt++
+			oi.Set(n, 99-i, p)
+		}
+		for n := 99 - i - 1; n >= i; n-- {
+			p := img.At(pixcnt, 0)
+			pixcnt++
+			oi.Set(99-i, n, p)
+		}
+		for n := 99 - i - 1; n > i; n-- {
+			p := img.At(pixcnt, 0)
+			pixcnt++
+			oi.Set(n, i, p)
+		}
+	}
 
 	o, err := os.Create("./o.png")
 	if err != nil {
