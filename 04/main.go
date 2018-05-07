@@ -7,21 +7,20 @@ import (
 
 // http://www.pythonchallenge.com/pc/def/linkedlist.php
 
-const baseUrl = "http://www.pythonchallenge.com/pc/def/linkedlist.php"
+const baseUrl = "http://www.pythonchallenge.com/pc/def/linkedlist.php?nothing="
 
 func main() {
 	//var next = "12345"
 	var next = "8022"
 	for {
-		d, err := getutil.Get(baseUrl, next)
+		d, _, err := getutil.Get(baseUrl, next)
 		if err != nil {
 			fmt.Println("Failed get link", next)
 			return
 		}
-		s := string(d)
-		fmt.Println("\t", s)
+		fmt.Println("\t", d)
 
-		next, err = getutil.MatchNext(s, `the next nothing is (\d+)`)
+		next, err = getutil.MatchNext(d, `the next nothing is (\d+)`)
 		if err != nil {
 			fmt.Println("Failed parse:", err)
 			return

@@ -5,40 +5,63 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"net/url"
 	"regexp"
 	"time"
 )
 
-var httpcli = http.Client{Timeout: time.Duration(time.Second * 3)}
+type MyJar struct {
+	cookies []*http.Cookie
+}
 
-func Get(baseUrl, next string) ([]byte, error) {
+func (jar *MyJar) SetCookies(u *url.URL, cookies []*http.Cookie) {
+	jar.cookies = cookies
+}
+
+func (jar *MyJar) Cookies(u *url.URL) []*http.Cookie {
+	return jar.cookies
+}
+
+var httpcli = http.Client{Jar: new(MyJar), Timeout: time.Duration(time.Second * 3)}
+
+func Get(baseUrl, next string) (content, cookie string, err error) {
 	var cnt = 1
 	for {
-		r, err := get(baseUrl, next)
+		content, cookie, err = get(baseUrl, next)
 		if err != nil {
 			fmt.Println("**HTTP Get error:", err)
 			if cnt < 3 {
 				cnt++
 			} else {
-				return nil, err
+				return
 			}
 		} else {
-			return r, nil
+			return
 		}
 	}
 }
 
-func get(baseUrl, next string) ([]byte, error) {
-	url := fmt.Sprintf("%s?nothing=%s", baseUrl, next)
+func get(baseUrl, next string) (content, cookie string, err error) {
+	//url := fmt.Sprintf("%s?nothing=%s", baseUrl, next)
+	url := fmt.Sprintf("%s%s", baseUrl, next)
 	fmt.Println("Fetching", url)
 
 	resp, err := httpcli.Get(url)
 	if err != nil {
-		return nil, err
+		return
 	}
+	buf, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return
+	}
+	content = string(buf)
 
-	buf, _ := ioutil.ReadAll(resp.Body)
-	return buf, nil
+	c := resp.Cookies()
+	//fmt.Println("cookies:", c)
+	if len(c) > 0 {
+		cookie = c[0].Value
+	}
+	return
 }
 
 func MatchNext(content, regstr string) (string, error) {
