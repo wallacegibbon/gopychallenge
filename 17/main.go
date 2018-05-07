@@ -2,9 +2,11 @@ package main
 
 import (
 	"../getutil"
+	"../phonebook"
 	"compress/bzip2"
 	"fmt"
 	"io/ioutil"
+	"net/http"
 	"net/url"
 	"strings"
 )
@@ -16,6 +18,11 @@ import (
 const baseUrl = "http://www.pythonchallenge.com/pc/def/linkedlist.php?busynothing="
 
 func main() {
+	//phase1()
+	phase2()
+}
+
+func phase1() {
 	var next = "12345"
 	var r string
 	for {
@@ -48,6 +55,20 @@ func main() {
 	}
 
 	fmt.Println(t)
+}
+
+func phase2() {
+	buf, err := phonebook.Req("phone", "Leopold")
+	if err != nil {
+		fmt.Println("Failed request:", err)
+		return
+	}
+	fmt.Println(buf)
+}
+
+func phase3() {
+	// Just use curl:
+	// curl http://www.pythonchallenge.com/pc/stuff/violin.php -H 'Cookie: info=the flowers are on their way'
 }
 
 func decode(s string) (string, error) {
