@@ -1,10 +1,10 @@
 package phonebook
 
 import (
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"strings"
-	"fmt"
 )
 
 const url = "http://www.pythonchallenge.com/pc/phonebook.php"

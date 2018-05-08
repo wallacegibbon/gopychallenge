@@ -1,8 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"../getutil"
+	"fmt"
 )
 
 // http://www.pythonchallenge.com/pc/def/linkedlist.php
@@ -27,4 +27,3 @@ func main() {
 		}
 	}
 }
-

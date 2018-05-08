@@ -1,9 +1,9 @@
 package draw
 
 import (
+	"errors"
 	"image"
 	"image/color"
-	"errors"
 )
 
 // The Bresenham algorithm
@@ -25,7 +25,7 @@ func DrawLine(img *image.NRGBA, x0, y0, x1, y1 int) {
 	}
 
 	for {
-		img.Set(x0, y0, color.RGBA{255,0,0,255})
+		img.Set(x0, y0, color.RGBA{255, 0, 0, 255})
 		if x0 == x1 && y0 == y1 {
 			break
 		}
@@ -42,10 +42,10 @@ func DrawLine(img *image.NRGBA, x0, y0, x1, y1 int) {
 }
 
 func Polygon(img *image.NRGBA, ps []int) error {
-	if len(ps) < 4 || len(ps) % 2 != 0 {
+	if len(ps) < 4 || len(ps)%2 != 0 {
 		return errors.New("polygon point argument odd")
 	}
-	for x := 0; x < len(ps) - 2; x += 2 {
+	for x := 0; x < len(ps)-2; x += 2 {
 		DrawLine(img, ps[x+0], ps[x+1], ps[x+2], ps[x+3])
 	}
 	return nil
