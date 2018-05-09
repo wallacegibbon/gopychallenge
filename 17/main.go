@@ -70,12 +70,13 @@ func phase2() error {
 }
 
 func phase3() error {
-	req, err := http.NewRequest("GET", "http://www.pythonchallenge.com/pc/stuff/violin.php", nil)
+	target := "http://www.pythonchallenge.com/pc/stuff/violin.php"
+	req, err := http.NewRequest("GET", target, nil)
 	if err != nil {
 		return err
 	}
 	req.Header.Set("Cookie", "info=the flowers are on their way")
-	cli := http.Client{}
+	cli := &http.Client{}
 	resp, err := cli.Do(req)
 	if err != nil {
 		return err

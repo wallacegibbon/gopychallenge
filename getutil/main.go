@@ -22,7 +22,7 @@ func (jar *MyJar) Cookies(u *url.URL) []*http.Cookie {
 	return jar.cookies
 }
 
-var httpcli = http.Client{Jar: new(MyJar), Timeout: time.Duration(time.Second * 3)}
+var httpcli = &http.Client{Jar: new(MyJar), Timeout: time.Duration(time.Second * 3)}
 
 func Get(baseUrl, next string) (content, cookie string, err error) {
 	var cnt = 1
