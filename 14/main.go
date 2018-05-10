@@ -1,3 +1,7 @@
+// http://www.pythonchallenge.com/pc/return/italy.html
+// username: huge
+// password: file
+
 package main
 
 import (
@@ -6,10 +10,6 @@ import (
 	"image/png"
 	"os"
 )
-
-// http://www.pythonchallenge.com/pc/return/italy.html
-// username: huge
-// password: file
 
 func main() {
 	f, err := os.Open("./wire.png")

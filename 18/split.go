@@ -1,3 +1,11 @@
+// http://www.pythonchallenge.com/pc/return/balloons.html
+// http://www.pythonchallenge.com/pc/return/brightness.html
+// username: huge
+// password: file
+
+// This level heavily relies on python's difflib. There is third-party go
+// library can do this, too. But it's not interesting, I will just drop it here
+
 package main
 
 import (
@@ -5,11 +13,6 @@ import (
 	"fmt"
 	"os"
 )
-
-// http://www.pythonchallenge.com/pc/return/balloons.html
-// http://www.pythonchallenge.com/pc/return/brightness.html
-// username: huge
-// password: file
 
 func main() {
 	f, err := os.Open("./deltas")
@@ -43,6 +46,3 @@ func main() {
 		o2.Write([]byte{'\n'})
 	}
 }
-
-// This level heavily relies on python's difflib. There is third-party go
-// library can do this, too. But it's not interesting, I will just drop it here

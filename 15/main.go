@@ -1,13 +1,13 @@
+// http://www.pythonchallenge.com/pc/return/uzi.html
+// username: huge
+// password: file
+
 package main
 
 import (
 	"fmt"
 	"time"
 )
-
-// http://www.pythonchallenge.com/pc/return/uzi.html
-// username: huge
-// password: file
 
 func main() {
 	//loc, err := time.LoadLocation("Asia/Shanghai")
@@ -29,9 +29,9 @@ func main() {
 }
 
 func isLeapYear(year int) bool {
-	if year % 100 != 0 {
-		return year % 4 == 0
+	if year%100 != 0 {
+		return year%4 == 0
 	} else {
-		return year % 400 == 0
+		return year%400 == 0
 	}
 }

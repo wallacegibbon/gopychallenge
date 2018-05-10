@@ -1,3 +1,5 @@
+// http://www.pythonchallenge.com/pc/def/oxygen.html
+
 package main
 
 import (
@@ -5,8 +7,6 @@ import (
 	"image/png"
 	"os"
 )
-
-// http://www.pythonchallenge.com/pc/def/oxygen.html
 
 func main() {
 	f, err := os.Open("./oxygen.png")

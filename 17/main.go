@@ -1,3 +1,7 @@
+// http://www.pythonchallenge.com/pc/return/romance.html
+// username: huge
+// password: file
+
 package main
 
 import (
@@ -11,10 +15,6 @@ import (
 	"os"
 	"strings"
 )
-
-// http://www.pythonchallenge.com/pc/return/romance.html
-// username: huge
-// password: file
 
 const baseUrl = "http://www.pythonchallenge.com/pc/def/linkedlist.php?busynothing="
 

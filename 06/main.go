@@ -1,3 +1,5 @@
+// http://www.pythonchallenge.com/pc/def/channel.html
+
 package main
 
 import (
@@ -7,8 +9,6 @@ import (
 	"io/ioutil"
 	"regexp"
 )
-
-// http://www.pythonchallenge.com/pc/def/channel.html
 
 func main() {
 	r, err := zip.OpenReader("./channel.zip")

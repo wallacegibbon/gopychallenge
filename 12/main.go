@@ -1,3 +1,7 @@
+// http://www.pythonchallenge.com/pc/return/evil.html
+// username: huge
+// password: file
+
 package main
 
 import (
@@ -5,10 +9,6 @@ import (
 	"io/ioutil"
 	"os"
 )
-
-// http://www.pythonchallenge.com/pc/return/evil.html
-// username: huge
-// password: file
 
 func main() {
 	f, err := os.Open("evil2.gfx")

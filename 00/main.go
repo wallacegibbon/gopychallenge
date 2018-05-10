@@ -1,10 +1,10 @@
+// http://www.pythonchallenge.com/pc/def/0.html
+
 package main
 
 import (
 	"fmt"
 )
-
-// http://www.pythonchallenge.com/pc/def/0.html
 
 func main() {
 	var n uint64 = 1

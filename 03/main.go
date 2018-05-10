@@ -1,3 +1,5 @@
+// http://www.pythonchallenge.com/pc/def/equality.html
+
 package main
 
 import (
@@ -5,8 +7,6 @@ import (
 	"io/ioutil"
 	"unicode"
 )
-
-// http://www.pythonchallenge.com/pc/def/equality.html
 
 func main() {
 	raw, err := ioutil.ReadFile("./raw.txt")

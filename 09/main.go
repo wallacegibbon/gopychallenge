@@ -1,16 +1,16 @@
+// http://www.pythonchallenge.com/pc/return/good.html
+// username: huge
+// password: file
+
 package main
 
 import (
+	"../draw"
 	"fmt"
 	"image"
 	"image/png"
 	"os"
-	"../draw"
 )
-
-// http://www.pythonchallenge.com/pc/return/good.html
-// username: huge
-// password: file
 
 var first = []int{
 	146, 399, 163, 403, 170, 393, 169, 391, 166, 386, 170, 381, 170, 371, 170, 355, 169, 346, 167, 335, 170, 329, 170, 320, 170,
@@ -58,4 +58,3 @@ func main() {
 		fmt.Println("Failed writing image:", err)
 	}
 }
-

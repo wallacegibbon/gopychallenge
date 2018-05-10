@@ -1,3 +1,7 @@
+// http://www.pythonchallenge.com/pc/hex/bin.html
+// username: butter
+// password: fly
+
 package main
 
 import (
@@ -7,10 +11,6 @@ import (
 	"io"
 	"os"
 )
-
-// http://www.pythonchallenge.com/pc/hex/bin.html
-// username: butter
-// password: fly
 
 func main() {
 	// Giving the Base64 stream to NewWav will cause error for some reason

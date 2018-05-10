@@ -1,3 +1,10 @@
+// http://www.pythonchallenge.com/pc/hex/idiot2.html
+// username: butter
+// password: fly
+
+// After find the final position, I will just use curl to download it:
+// curl http://www.pythonchallenge.com/pc/hex/unreal.jpg -H "Range: bytes=1152983631-" -H "Authorization: Basic YnV0dGVyOmZseQ==" > out
+
 package main
 
 import (
@@ -7,13 +14,6 @@ import (
 	"regexp"
 	"strconv"
 )
-
-// http://www.pythonchallenge.com/pc/hex/idiot2.html
-// username: butter
-// password: fly
-
-// After find the final position, I will just use curl to download it:
-// curl http://www.pythonchallenge.com/pc/hex/unreal.jpg -H "Range: bytes=1152983631-" -H "Authorization: Basic YnV0dGVyOmZseQ==" > out
 
 func main() {
 	var err error

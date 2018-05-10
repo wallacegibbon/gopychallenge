@@ -1,13 +1,13 @@
-package main
-
-import (
-	"fmt"
-	"../phonebook"
-)
-
 // http://www.pythonchallenge.com/pc/return/disproportional.html
 // username: huge
 // password: file
+
+package main
+
+import (
+	"../phonebook"
+	"fmt"
+)
 
 func main() {
 	//buf, err := phonebook.Req("listmethod", "")
@@ -19,4 +19,3 @@ func main() {
 	}
 	fmt.Println(buf)
 }
-

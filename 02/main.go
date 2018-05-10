@@ -1,3 +1,5 @@
+// http://www.pythonchallenge.com/pc/def/ocr.html
+
 package main
 
 import (
@@ -5,8 +7,6 @@ import (
 	"io/ioutil"
 	"unicode"
 )
-
-// http://www.pythonchallenge.com/pc/def/ocr.html
 
 func main() {
 	d, err := ioutil.ReadFile("./raw.txt")

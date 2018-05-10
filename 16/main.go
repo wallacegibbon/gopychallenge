@@ -1,3 +1,7 @@
+// http://www.pythonchallenge.com/pc/return/mozart.html
+// username: huge
+// password: file
+
 package main
 
 import (
@@ -8,10 +12,6 @@ import (
 	"image/png"
 	"os"
 )
-
-// http://www.pythonchallenge.com/pc/return/mozart.html
-// username: huge
-// password: file
 
 func main() {
 	in, err := os.Open("mozart.gif")

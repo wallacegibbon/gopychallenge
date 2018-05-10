@@ -1,11 +1,11 @@
+// http://www.pythonchallenge.com/pc/def/linkedlist.php
+
 package main
 
 import (
 	"../getutil"
 	"fmt"
 )
-
-// http://www.pythonchallenge.com/pc/def/linkedlist.php
 
 const baseUrl = "http://www.pythonchallenge.com/pc/def/linkedlist.php?nothing="
 
