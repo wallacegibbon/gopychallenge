@@ -25,9 +25,9 @@ func main() {
 		return
 	}
 	for {
-		if !isItZlib(buf) && !isItBzip2(buf) {
+		if !itIsZlib(buf) && !itIsBzip2(buf) {
 			tmp := reverseBytes(buf)
-			if !isItZlib(tmp) && !isItBzip2(tmp) {
+			if !itIsZlib(tmp) && !itIsBzip2(tmp) {
 				fmt.Println("decompress:", string(buf))
 				return
 			}
@@ -44,11 +44,11 @@ func main() {
 }
 
 func decBytes(raw []byte) ([]byte, error) {
-	if isItBzip2(raw) {
+	if itIsBzip2(raw) {
 		fmt.Print("@")
 		return decBzip2(raw)
 	}
-	if isItZlib(raw) {
+	if itIsZlib(raw) {
 		fmt.Print(" ")
 		return decZlib(raw)
 	}
@@ -57,11 +57,11 @@ func decBytes(raw []byte) ([]byte, error) {
 	return nil, errors.New(ei)
 }
 
-func isItBzip2(raw []byte) bool {
+func itIsBzip2(raw []byte) bool {
 	return bytes.Equal(raw[:3], []byte{'B', 'Z', 'h'})
 }
 
-func isItZlib(raw []byte) bool {
+func itIsZlib(raw []byte) bool {
 	return bytes.Equal(raw[:2], []byte{0x78, 0x9c})
 }
 
